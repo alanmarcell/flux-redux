@@ -1,20 +1,21 @@
 export class Store {
-    constructor(dispatcher){
+    constructor(dispatcher) {
         this.__listeners = [];
         this.__state = this.getInitialState();
+        this.__nextState = []
         dispatcher.register(this.__onDispatch.bind(this));
     }
-    getInitialState(){
+    getInitialState() {
         throw new Error("Subclasses must override getInitialState method of a Flux Store");
     }
-    __onDispatch(){
+    __onDispatch() {
         throw new Error("Subclasses must override __onDispatch method of a Flux Store");
     }
-    addListener(listener){
+    addListener(listener) {
         this.__listeners.push(listener);
     }
-    __emitChange(){
-        this.__listeners.forEach(listener=>listener(this.__state));
+    __emitChange() {
+        this.__listeners.forEach(listener => listener(this.__state));
     }
 
 }
