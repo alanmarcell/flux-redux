@@ -119,6 +119,11 @@ document.forms.newTask.addEventListener('submit',(e)=>{
     }
 });
 
+document.forms.redo.addEventListener('submit', (e) => {
+    e.preventDefault();
+    tasksStore.restoreNextState();
+})
+
 document.forms.undo.addEventListener('submit',(e)=>{
     e.preventDefault();
     tasksStore.revertLastState();
